@@ -30,6 +30,7 @@ namespace DOAN_BANHSACH.BUS
         {
             _repository.Delete(maLuong);
         }
+        
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DOAN_BANSACH.DAL.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,5 +17,11 @@ namespace DUAN_
         {
             InitializeComponent();
         }
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
+ 
 }

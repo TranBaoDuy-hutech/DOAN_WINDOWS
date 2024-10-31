@@ -15,6 +15,7 @@ namespace DOAN_BANSACH.DAL.Entity
         public int MALUONG { get; set; }
 
         public int? MANV { get; set; }
+        public string TENNV { get; set; }
 
         public int? THANG { get; set; }
 
@@ -23,6 +24,7 @@ namespace DOAN_BANSACH.DAL.Entity
         public double? LUONGTHANG { get; set; }
 
         public virtual NHANVIEN NHANVIEN { get; set; }
+        
     }
     public class LuongRepository
     {
@@ -51,8 +53,8 @@ namespace DOAN_BANSACH.DAL.Entity
                 if (existing != null)
                 {
                     existing.MANV = luong.MANV;
-                    existing.LUONGTHANG = luong.LUONGTHANG;
-                 //   existing.NGAYTHANG = luong.NGAYTHANG;
+                    existing.TENNV = luong.TENNV;
+                    existing.LUONGTHANG = luong.LUONGTHANG;                 
                     context.SaveChanges();
                 }
                 else
@@ -74,7 +76,7 @@ namespace DOAN_BANSACH.DAL.Entity
                 }
                 else
                 {
-                    throw new Exception("Lýõng không t?n t?i!");
+                    throw new Exception("Lýõng không ton tai!");
                 }
             }
         }

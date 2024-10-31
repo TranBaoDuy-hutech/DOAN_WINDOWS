@@ -39,10 +39,10 @@ namespace DUAN_
             
 
             // Thực hiện kiểm tra đăng nhập (đây chỉ là ví dụ)
-            if (username == "1006738" && password == "8153") // Thay đổi logic kiểm tra thực tế
+            if (username == "1" && password == "1") // Thay đổi logic kiểm tra thực tế
             {
                 MessageBox.Show("Đăng nhập thành công!");
-                TRANGCHU f = new TRANGCHU();
+                GIAODIEN f = new GIAODIEN();
                 this.Hide();
                 f.ShowDialog();
                 this.Show();
@@ -78,6 +78,19 @@ namespace DUAN_
         private void txbid_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtpass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) // Kiểm tra xem phím Enter có được nhấn không
+            {
+                btndangnhap.PerformClick(); // Gọi hàm nhấn nút "Đăng nhập"
+            }
         }
     }
 }

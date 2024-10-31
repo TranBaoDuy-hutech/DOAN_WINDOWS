@@ -32,7 +32,7 @@ namespace DOAN_BANSACH.DAL.Entity
         public int? MANV { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CT_HOADON> CT_HOADON { get; set; }
+        public virtual ICollection <CT_HOADON> CT_HOADON { get; set; }
 
         public virtual NHANVIEN NHANVIEN { get; set; }
     }

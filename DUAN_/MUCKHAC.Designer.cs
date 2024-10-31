@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,32 +49,14 @@
             this.panel1.Size = new System.Drawing.Size(775, 476);
             this.panel1.TabIndex = 0;
             // 
-            // button1
+            // button5
             // 
-            this.button1.Location = new System.Drawing.Point(15, 17);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 139);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "LICH SU GIAO DICH";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(259, 17);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(188, 139);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "TRA HANG";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(518, 17);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(188, 139);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "MO KET";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button5.Location = new System.Drawing.Point(259, 231);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(188, 139);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "UPDATA";
+            this.button5.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
@@ -85,21 +67,40 @@
             this.button4.Text = "RUT TIEN";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // button3
             // 
-            this.button5.Location = new System.Drawing.Point(259, 231);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(188, 139);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "UPDATA";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button3.Location = new System.Drawing.Point(518, 17);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(188, 139);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "MO KET";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(259, 17);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(188, 139);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "TRA HANG";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(15, 17);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(188, 139);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "LICH SU GIAO DICH";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MUCKHAC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Blue;
-            this.ClientSize = new System.Drawing.Size(800, 501);
+            this.ClientSize = new System.Drawing.Size(746, 501);
             this.Controls.Add(this.panel1);
             this.Name = "MUCKHAC";
             this.Text = "MUCKHAC";

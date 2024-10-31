@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -38,29 +39,29 @@ namespace DUAN_
         {
             // Example data, replace with your actual invoice data
 
-            var CHITIETHOADON =    $"CHI TIET HOA DON\n\n"+
+            var CHITIETHOADON = $"CHI TIET HOA DON\n\n" +
                                    $"NGAY IN:          {dateTimePicker1.Value.ToString("dd/MM/yyyy")}\n" +
                                    $"SO HOA DON:       {txtMaHoaDon.Text}\n" +
                                    $"NGAY LAP HOA DON: {txtNgayLap.Value.ToString("dd/MM/yyyy")}\n" +
-                                   $"MA NHAN VIEN:     {txtHDnv.Text}\n" +
-                                   $"TEN KHACH HANG:   {txtTenKhachHang.Text}\n\n" +
+                                   $"MA NHAN VIEN:     {txtHDtt.Text}\n" +
+                                   $"TEN KHACH HANG:   {txtHDmasach.Text}\n\n" +
                                    "CAM ON BAN DA MUA HANG";
-                e.Graphics.DrawString(CHITIETHOADON, new Font("Arial", 20), Brushes.Black, 100, 100);      
+            e.Graphics.DrawString(CHITIETHOADON, new Font("Arial", 20), Brushes.Black, 100, 100);
         }
 
         private void PrintDocument_PrintPage2(object sender, PrintPageEventArgs e)
         {
-                // Tạo nội dung cho phiếu lương
-               
-                 var phieuLuong = 
-                                 $"PHIEU LUONG THANG\n\n" +
-                                 $"NGAY IN:        {dateTimePicker1.Value.ToString("dd/MM/yyyy")}\n" +
-                                 $"Mã Lương:       {txtMaPhieuLuong.Text}\n" +
-                                 $"Mã Nhân Viên:   {txtLuongMANV.Text}\n" +
-                                 $"Lương Tháng:    {txtLuongThang.Text}\n";
+            // Tạo nội dung cho phiếu lương
+
+            var phieuLuong =
+                            $"PHIEU LUONG THANG\n\n" +
+                            $"NGAY IN:        {dateTimePicker1.Value.ToString("dd/MM/yyyy")}\n" +
+                            $"Mã Lương:       {txtMaPhieuLuong.Text}\n" +
+                            $"Mã Nhân Viên:   {txtLuongMANV.Text}\n" +
+                            $"Lương Tháng:    {txtLuongThang.Text}\n";
 
 
-                    e.Graphics.DrawString(phieuLuong, new Font("Arial", 20), Brushes.Black, 100, 100);
+            e.Graphics.DrawString(phieuLuong, new Font("Arial", 20), Brushes.Black, 100, 100);
         }
         private void PrintInvoice()
         {
@@ -134,7 +135,7 @@ namespace DUAN_
             this.Show();
         }
 
-        
+
         private void TRANGCHU_Load(object sender, EventArgs e)
         {
             LoadDataSACH();
@@ -143,30 +144,33 @@ namespace DUAN_
             LoadDataHoaDon();
             LoadNhanVien();
             LoadLuong();
+
         }
         private void LoadDataSACH()
         {
             using (var context = new BansachModel())
             {
-                var data = context.SACH.ToList(); // Lấy danh sách dữ liệu
-
-                // Chuyển đổi danh sách thành DataTable
+                var data = context.SACH.ToList();  // Chuyển đổi danh sách thành DataTable
                 var dataTable = new DataTable();
 
-                dataTable.Columns.Add("MASACH", typeof(int));
+                dataTable.Columns.Add("MASACH", typeof(string));
                 dataTable.Columns.Add("TENSACH", typeof(string));
                 dataTable.Columns.Add("THELOAI", typeof(string));
                 dataTable.Columns.Add("TACGIA", typeof(string));
                 dataTable.Columns.Add("SOLUONG", typeof(string));
                 dataTable.Columns.Add("GIABAN", typeof(string));
 
+
                 foreach (var item in data)
                 {
-                    dataTable.Rows.Add(item.MASACH, item.TENSACH, item.MATHELOAISACH, item.TACGIA, item.SL, item.GIA);
+
+                    dataTable.Rows.Add(item.MASACH, item.TENSACH, item.TENTHELOAI, item.TACGIA, item.SL, item.GIA);
+
                 }
 
                 // Gán DataTable cho DataGridView trong TabPage
                 dgvSach.DataSource = dataTable;
+
             }
         }
         private void LoadDataTHELOAI()
@@ -175,7 +179,7 @@ namespace DUAN_
             var data = service.GetAllTheLoai();
 
             var dataTable = new DataTable();
-            dataTable.Columns.Add("MATHELOAISACH", typeof(int));
+            dataTable.Columns.Add("MATHELOAISACH", typeof(string));
             dataTable.Columns.Add("TENTHELOAISACH", typeof(string));
 
             foreach (var item in data)
@@ -187,23 +191,24 @@ namespace DUAN_
         }
         private void LoadDataPhieuNhap()
         {
-            var service = new PhieuNhapService();
-            var data = service.GetAllPhieuNhap();
+            var service = new CT_PhieuNhapService();
+            var data = service.GetAllCT_PHIEUNHAP();
 
             var dataTable = new DataTable();
             dataTable.Columns.Add("MAPHIEUNHAP", typeof(int));
             dataTable.Columns.Add("NGAYNHAP", typeof(DateTime));
-            dataTable.Columns.Add("NHACUNGCAP", typeof(string));
+            dataTable.Columns.Add("MASACH", typeof(string));
+            dataTable.Columns.Add("SOLUONG", typeof(string));
 
             foreach (var item in data)
             {
-                dataTable.Rows.Add(item.MAPHIEUNHAP, item.NGAYNHAP, item.NCC);
+                dataTable.Rows.Add(item.MAPHIEUNHAP,item.NGAYNHAP, item.MASACH, item.SOLUONG);
             }
 
             dgvPhieunhap.DataSource = dataTable;
         }
 
-        private void AddSach(int maSach, string tenSach, int theLoai, string tacGia, int soLuong, decimal giaBan)
+        private void AddSach(int maSach, string tenSach, string theLoai, string tacGia, int soLuong, decimal giaBan)
         {
             using (var context = new BansachModel())
             {
@@ -212,7 +217,7 @@ namespace DUAN_
                 {
                     MASACH = maSach,
                     TENSACH = tenSach,
-                    MATHELOAISACH = theLoai,
+                    TENTHELOAI = theLoai,
                     TACGIA = tacGia,
                     SL = soLuong,
                     GIA = giaBan
@@ -229,7 +234,7 @@ namespace DUAN_
             // Lấy thông tin từ các TextBox (hoặc các điều khiển nhập khác)
             int maSach = int.Parse(txtMaSach.Text);
             string tenSach = txttensach.Text;
-            int theLoai = int.Parse(txtloaisach.Text);
+            string theLoai = txtloaisach.Text;
             string tacGia = txttacgia.Text;
             int soLuong = int.Parse(txtSoLuong.Text);
             decimal giaBan = decimal.Parse(txtGiaBan.Text);
@@ -240,7 +245,7 @@ namespace DUAN_
             // Tải lại dữ liệu vào DataGridView
             LoadDataSACH();
         }
-        private void EditSach(int maSach, string tenSach, int theLoai, string tacGia, int soLuong, decimal giaBan)
+        private void EditSach(int maSach, string tenSach, string theLoai, string tacGia, int soLuong, decimal giaBan)
         {
             using (var context = new BansachModel())
             {
@@ -250,7 +255,7 @@ namespace DUAN_
                 {
                     // Cập nhật thông tin
                     sach.TENSACH = tenSach;
-                    sach.MATHELOAISACH = theLoai;
+                    sach.TENTHELOAI = theLoai;
                     sach.TACGIA = tacGia;
                     sach.SL = soLuong;
                     sach.GIA = giaBan;
@@ -271,14 +276,12 @@ namespace DUAN_
             // Lấy thông tin từ các TextBox (hoặc các điều khiển nhập khác)
             int maSach = int.Parse(txtMaSach.Text);
             string tenSach = txttensach.Text;
-            int theLoai = int.Parse(txtloaisach.Text);
+            string theLoai = txtloaisach.Text;
             string tacGia = txttacgia.Text;
             int soLuong = int.Parse(txtSoLuong.Text);
             decimal giaBan = decimal.Parse(txtGiaBan.Text);
-
             // Gọi phương thức sửa sách
             EditSach(maSach, tenSach, theLoai, tacGia, soLuong, giaBan);
-
             // Tải lại dữ liệu vào DataGridView
             LoadDataSACH();
 
@@ -329,66 +332,119 @@ namespace DUAN_
                 txttacgia.Text = selectedRow.Cells["TACGIA"].Value.ToString();
                 txtSoLuong.Text = selectedRow.Cells["SOLUONG"].Value.ToString();
                 txtGiaBan.Text = selectedRow.Cells["GIABAN"].Value.ToString();
+                TinhTongTien();
             }
         }
 
         private void btnpnthem_Click(object sender, EventArgs e)
         {
             if (int.TryParse(txtMaPhieuNhap.Text, out int maPhieuNhap) &&
-        DateTime.TryParse(txtNgayNhap.Text, out DateTime ngayNhap))
+                DateTime.TryParse(txtNgayNhap.Text, out DateTime ngayNhap) &&
+                int.TryParse(txtPNmasacch.Text, out int maSach) && // Thêm kiểm tra cho mã sách
+                int.TryParse(txtPNsl.Text, out int soLuong)) // Thêm kiểm tra cho số lượng
             {
-                var phieuNhap = new PHIEUNHAP
+                var phieuNhap = new CT_PHIEUNHAP
                 {
-                    MAPHIEUNHAP = maPhieuNhap, // Include MAPHIEUNHAP
+                    MAPHIEUNHAP = maPhieuNhap,
                     NGAYNHAP = ngayNhap,
-                    NCC = txtNhaCungCap.Text
+                    MASACH = maSach, // Gán mã sách
+                    SOLUONG = soLuong // Gán số lượng
                 };
 
-                var service = new PhieuNhapService();
-                service.AddPhieuNhap(phieuNhap);
+                var service = new CT_PhieuNhapService(); // Đảm bảo sử dụng dịch vụ đúng
+                service.Add(phieuNhap);
                 LoadDataPhieuNhap(); // Refresh data
+                LoadDataSACH();
             }
             else
             {
-                MessageBox.Show("Mã phiếu nhập hoặc ngày nhập không hợp lệ.");
+                MessageBox.Show("Mã phiếu nhập, ngày nhập, mã sách hoặc số lượng không hợp lệ.");
             }
         }
+
 
         private void btnpnxoa_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(txtMaPhieuNhap.Text, out int maPhieuNhap))
+            if (int.TryParse(txtMaPhieuNhap.Text, out int maPhieuNhap) &&
+                int.TryParse(txtPNmasacch.Text, out int maSach)) // Thêm mã sách nếu cần
             {
-                var service = new PhieuNhapService();
-                service.DeletePhieuNhap(maPhieuNhap);
-                LoadDataPhieuNhap(); // Refresh data
+                var service = new CT_PhieuNhapService();
+                try
+                {
+                    service.Delete(maPhieuNhap, maSach); // Gọi phương thức xóa
+                    LoadDataPhieuNhap(); // Refresh data
+                    MessageBox.Show("Xóa phiếu nhập thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
             else
             {
-                MessageBox.Show("Mã phiếu nhập không hợp lệ.");
+                MessageBox.Show("Mã phiếu nhập hoặc mã sách không hợp lệ.");
             }
+            LoadDataSACH();
         }
+
+        /*
+
 
         private void btnpnsua_Click(object sender, EventArgs e)
         {
             if (int.TryParse(txtMaPhieuNhap.Text, out int maPhieuNhap) &&
-        DateTime.TryParse(txtNgayNhap.Text, out DateTime ngayNhap))
+                int.TryParse(txtPNmasacch.Text, out int maSach) && // Thêm mã sách nếu cần
+                DateTime.TryParse(txtNgayNhap.Text, out DateTime ngayNhap) &&
+                int.TryParse(txtPNsl.Text, out int soLuong)) // Giả sử bạn có ô nhập số lượng
             {
-                var phieuNhap = new PHIEUNHAP
+                var phieuNhap = new CT_PHIEUNHAP
                 {
                     MAPHIEUNHAP = maPhieuNhap,
+                    MASACH = maSach,
                     NGAYNHAP = ngayNhap,
-                    NCC = txtNhaCungCap.Text
+                    SOLUONG = soLuong // Cập nhật số lượng nếu cần
                 };
 
-                var service = new PhieuNhapService();
-                service.UpdatePhieuNhap(phieuNhap);
+                var service = new CT_PhieuNhapService();
+                service.Update(phieuNhap);
                 LoadDataPhieuNhap(); // Refresh data
             }
             else
             {
-                MessageBox.Show("Mã phiếu nhập hoặc ngày nhập không hợp lệ.");
+                MessageBox.Show("Thông tin không hợp lệ.");
             }
         }
+
+        */
+        private void btnpnsua_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtMaPhieuNhap.Text, out int maPhieuNhap) &&
+                int.TryParse(txtPNmasacch.Text, out int maSach) &&
+                DateTime.TryParse(txtNgayNhap.Text, out DateTime ngayNhap) &&
+                int.TryParse(txtPNsl.Text, out int soLuong))
+            {
+                var phieuNhap = new CT_PHIEUNHAP
+                {
+                    MAPHIEUNHAP = maPhieuNhap,
+                    MASACH = maSach,
+                    NGAYNHAP = ngayNhap,
+                    SOLUONG = soLuong
+                };
+
+                var service = new CT_PhieuNhapService();
+                service.UpdateCTPhieuNhap(phieuNhap);
+                LoadDataPhieuNhap(); // Làm mới dữ liệu
+                LoadDataSACH();
+            }
+            else
+            {
+                MessageBox.Show("Thông tin không hợp lệ.");
+            }
+        }
+
+
+
 
         private void dgvPhieunhap_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -397,9 +453,13 @@ namespace DUAN_
                 var selectedRow = dgvPhieunhap.Rows[e.RowIndex];
                 txtMaPhieuNhap.Text = selectedRow.Cells["MAPHIEUNHAP"].Value.ToString();
                 txtNgayNhap.Text = ((DateTime)selectedRow.Cells["NGAYNHAP"].Value).ToString("yyyy-MM-dd");
-                txtNhaCungCap.Text = selectedRow.Cells["NHACUNGCAP"].Value.ToString();
+
+                // Nếu có thêm cột mã sách và số lượng thì có thể thêm vào đây
+                txtPNmasacch.Text = selectedRow.Cells["MASACH"].Value.ToString();
+                txtPNsl.Text = selectedRow.Cells["SOLUONG"].Value.ToString();
             }
         }
+
 
         private void btntlthem_Click(object sender, EventArgs e)
         {
@@ -447,37 +507,39 @@ namespace DUAN_
         }
         private void LoadDataHoaDon()
         {
-            var service = new HoaDonService();
-            var data = service.GetAllHoaDon();
+            var service = new CT_HoaDonService();
+            var data = service.GetAllCT_HoaDon();
 
             var dataTable = new DataTable();
             dataTable.Columns.Add("MAHOADON", typeof(int));
             dataTable.Columns.Add("NGAYLAP", typeof(DateTime));
-            dataTable.Columns.Add("TENKHACHHANG", typeof(string));
-            dataTable.Columns.Add("NHANVIEN", typeof(int));
+            dataTable.Columns.Add("MASACH", typeof(int));
+            dataTable.Columns.Add("SOLUONG", typeof(int));
+            dataTable.Columns.Add("TONGTIEN", typeof(int));
 
 
             foreach (var item in data)
             {
-                dataTable.Rows.Add(item.MAHD, item.NGAYLAPHD, item.TENKH, item.MANV);
+                dataTable.Rows.Add(item.MAHD, item.NGAYLAP, item.MASACH, item.SOLUONG, item.TONGTIEN);
             }
 
             dgvHoaDon.DataSource = dataTable;
+
         }
 
         private void btnhdthem_Click(object sender, EventArgs e)
         {
-            var hoaDon = new HOADON
+            var hoaDon = new CT_HOADON
             {
                 MAHD = int.Parse(txtMaHoaDon.Text), // Assume user inputs valid ID
-                NGAYLAPHD = DateTime.Parse(txtNgayLap.Text),
-                //   TONGTIEN = decimal.Parse(txtTongTien.Text),
-                TENKH = txtTenKhachHang.Text,
-                MANV = int.Parse(txtHDnv.Text)
+                NGAYLAP = DateTime.Parse(txtNgayLap.Text),
+                TONGTIEN = int.Parse(txtHDtt.Text),
+                MASACH = int.Parse(txtHDmasach.Text),
+                SOLUONG = int.Parse(txtHDsl.Text)
             };
 
-            var service = new HoaDonService();
-            service.AddHoaDon(hoaDon);
+            var service = new CT_HoaDonService();
+            service.Add(hoaDon);
             LoadDataHoaDon(); // Refresh data
         }
 
@@ -487,8 +549,8 @@ namespace DUAN_
             {
                 MAHD = int.Parse(txtMaHoaDon.Text),
                 NGAYLAPHD = DateTime.Parse(txtNgayLap.Text),
-                TENKH = txtTenKhachHang.Text,
-                MANV = int.Parse(txtHDnv.Text)
+                TENKH = txtHDmasach.Text,
+                MANV = int.Parse(txtHDtt.Text)
             };
 
             var service = new HoaDonService();
@@ -498,11 +560,8 @@ namespace DUAN_
 
         private void btnhdxoa_Click(object sender, EventArgs e)
         {
-            int maHoaDon = int.Parse(txtMaHoaDon.Text);
 
-            var service = new HoaDonService();
-            service.DeleteHoaDon(maHoaDon);
-            LoadDataHoaDon(); // Refresh data
+            
         }
 
         private void dgvHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -513,12 +572,13 @@ namespace DUAN_
                 var selectedRow = dgvHoaDon.Rows[e.RowIndex];
                 txtMaHoaDon.Text = selectedRow.Cells["MAHOADON"].Value.ToString();
                 txtNgayLap.Text = ((DateTime)selectedRow.Cells["NGAYLAP"].Value).ToString("yyyy-MM-dd");
-                txtTenKhachHang.Text = selectedRow.Cells["TENKHACHHANG"].Value.ToString();
-                txtHDnv.Text = selectedRow.Cells["NHANVIEN"].Value.ToString();
+                txtHDmasach.Text = selectedRow.Cells["MASACH"].Value.ToString();
+                txtHDtt.Text = selectedRow.Cells["TONGTIEN"].Value.ToString();
+                txtHDsl.Text = selectedRow.Cells["SOLUONG"].Value.ToString();
             }
         }
 
-        
+
 
         private void LoadNhanVien()
         {
@@ -529,7 +589,7 @@ namespace DUAN_
             dgvNhanVien.DataSource = data; // Gán danh sách nhân viên cho DataGridView
 
             var dataTable = new DataTable();
-            dataTable.Columns.Add("MANHANVIEN", typeof(int));
+            dataTable.Columns.Add("MANHANVIEN", typeof(string));
             dataTable.Columns.Add("TENNHANVIEN", typeof(string));
             dataTable.Columns.Add("DIACHI", typeof(string));
             dataTable.Columns.Add("SODIENTHOAI", typeof(int));
@@ -634,15 +694,13 @@ namespace DUAN_
             var dataTable = new DataTable();
             dataTable.Columns.Add("MAPHIEULUONG", typeof(int));
             dataTable.Columns.Add("MANHANVIEN", typeof(int));
+             dataTable.Columns.Add("TENNHANVIEN", typeof(string));
             dataTable.Columns.Add("LUONGTHANG", typeof(int));
-
-            //   dataTable.Columns.Add("SODIENTHOAI", typeof(int));
-            //   dataTable.Columns.Add("EMAIL", typeof(string));
 
 
             foreach (var item in data)
             {
-                dataTable.Rows.Add(item.MALUONG, item.MANV, item.LUONGTHANG);
+                dataTable.Rows.Add(item.MALUONG, item.MANV, item.TENNV, item.LUONGTHANG);
             }
 
             dgvLuong.DataSource = dataTable;
@@ -656,6 +714,7 @@ namespace DUAN_
                 {
                     MALUONG = int.Parse(txtMaPhieuLuong.Text),
                     MANV = int.Parse(txtLuongMANV.Text), // Lấy từ combobox hoặc textbox
+                    TENNV = txtLtennv.Text,
                     LUONGTHANG = int.Parse(txtLuongThang.Text),
 
                 };
@@ -679,6 +738,7 @@ namespace DUAN_
                 {
                     MALUONG = int.Parse(txtMaPhieuLuong.Text),
                     MANV = int.Parse(txtLuongMANV.Text),
+                    TENNV = txtLtennv.Text,
                     LUONGTHANG = double.Parse(txtLuongThang.Text),
                 };
 
@@ -716,9 +776,90 @@ namespace DUAN_
                 var selectedRow = dgvLuong.Rows[e.RowIndex];
                 txtMaPhieuLuong.Text = selectedRow.Cells["MAPHIEULUONG"].Value.ToString();
                 txtLuongMANV.Text = selectedRow.Cells["MANHANVIEN"].Value.ToString();
+                txtLtennv.Text = selectedRow.Cells["TENNHANVIEN"].Value.ToString();
                 txtLuongThang.Text = selectedRow.Cells["LUONGTHANG"].Value.ToString();
 
             }
+        }
+        public SACH TimSach(int maSach)
+        {
+            using (var context = new BansachModel())
+            {
+                // Tìm sách theo mã sách
+                return context.SACH.FirstOrDefault(s => s.MASACH == maSach);
+            }
+        }
+        private void btntim_Click(object sender, EventArgs e)
+        {
+            // Lấy mã sách từ TextBox
+            int maSach = int.Parse(txtMaSach.Text);
+
+            // Gọi phương thức tìm sách
+            var sach = TimSach(maSach);
+
+            // Kiểm tra nếu sách tồn tại
+            if (sach != null)
+            {
+                // Hiển thị thông tin sách lên các TextBox (hoặc điều khiển khác)
+                txttensach.Text = sach.TENSACH;
+                txtloaisach.Text = sach.MATHELOAISACH.ToString();
+                txttacgia.Text = sach.TACGIA;
+                txtSoLuong.Text = sach.SL.ToString();
+                txtGiaBan.Text = sach.GIA.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy sách với mã: " + maSach);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TinhTongTien();
+            THANHTOAN F = new THANHTOAN();
+            this.Hide();
+            F.ShowDialog();
+            this.Show();
+            
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+       
+        private void TinhTongTien()
+        {
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            LoadDataSACH();
+            LoadDataTHELOAI();
+            LoadDataPhieuNhap();
+            LoadDataHoaDon();
+            LoadNhanVien();
+            LoadLuong();
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            LoadDataSACH();
+            LoadDataTHELOAI();
+            LoadDataPhieuNhap();
+            LoadDataHoaDon();
+            LoadNhanVien();
+            LoadLuong();
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
