@@ -118,6 +118,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QUENMK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QUENMK.Designer.cs">
+      <DependentUpon>QUENMK.cs</DependentUpon>
+    </Compile>
     <Compile Include="THANHTOAN.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="QUENMK.resx">
+      <DependentUpon>QUENMK.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="THANHTOAN.resx">
       <DependentUpon>THANHTOAN.cs</DependentUpon>
     </EmbeddedResource>
@@ -208,6 +217,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\z5984139153077_221ddd35493f4070e4ef5bd94fb76f8b.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CHS2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\A7307214.jpg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\A7307209.jpg%282%29.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

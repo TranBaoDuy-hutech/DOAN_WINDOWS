@@ -39,7 +39,7 @@ namespace DUAN_
             
 
             // Thực hiện kiểm tra đăng nhập (đây chỉ là ví dụ)
-            if (username == "1" && password == "1") // Thay đổi logic kiểm tra thực tế
+            if (username == "1006738" && password == "8153") // Thay đổi logic kiểm tra thực tế
             {
                 MessageBox.Show("Đăng nhập thành công!");
                 GIAODIEN f = new GIAODIEN();
@@ -91,6 +91,12 @@ namespace DUAN_
            {
                btndangnhap.PerformClick(); // Gọi hàm nhấn nút "Đăng nhập"
            }
+        }
+
+        private void txtqmk_Click(object sender, EventArgs e)
+        {
+           QUENMK forgotPasswordForm = new QUENMK();
+            forgotPasswordForm.ShowDialog();
         }
     }
 }

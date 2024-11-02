@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabSACH = new System.Windows.Forms.TabControl();
@@ -115,8 +114,10 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnInPhieuLuong = new System.Windows.Forms.Button();
+            this.txtLtennv = new System.Windows.Forms.TextBox();
             this.txtLuongThang = new System.Windows.Forms.TextBox();
             this.txtLuongMANV = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.txtMaPhieuLuong = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
@@ -125,8 +126,7 @@
             this.btnluongthem = new System.Windows.Forms.Button();
             this.btnluongxoa = new System.Windows.Forms.Button();
             this.dgvLuong = new System.Windows.Forms.DataGridView();
-            this.label26 = new System.Windows.Forms.Label();
-            this.txtLtennv = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabSACH.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -161,17 +161,6 @@
             this.panel1.Size = new System.Drawing.Size(1004, 66);
             this.panel1.TabIndex = 0;
             // 
-            // button1
-            // 
-            this.button1.Image = global::DUAN_.Properties.Resources.LOGO;
-            this.button1.Location = new System.Drawing.Point(750, 2);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(247, 61);
-            this.button1.TabIndex = 3;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(216, 22);
@@ -182,7 +171,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.textBox1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.textBox1.Location = new System.Drawing.Point(30, 22);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
@@ -1116,6 +1105,14 @@
             this.btnInPhieuLuong.UseVisualStyleBackColor = true;
             this.btnInPhieuLuong.Click += new System.EventHandler(this.btnInPhieuLuong_Click);
             // 
+            // txtLtennv
+            // 
+            this.txtLtennv.Location = new System.Drawing.Point(566, 14);
+            this.txtLtennv.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLtennv.Name = "txtLtennv";
+            this.txtLtennv.Size = new System.Drawing.Size(273, 20);
+            this.txtLtennv.TabIndex = 9;
+            // 
             // txtLuongThang
             // 
             this.txtLuongThang.Location = new System.Drawing.Point(566, 63);
@@ -1131,6 +1128,16 @@
             this.txtLuongMANV.Name = "txtLuongMANV";
             this.txtLuongMANV.Size = new System.Drawing.Size(273, 20);
             this.txtLuongMANV.TabIndex = 8;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(451, 19);
+            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(47, 13);
+            this.label26.TabIndex = 6;
+            this.label26.Text = "TEN NV";
             // 
             // txtMaPhieuLuong
             // 
@@ -1217,23 +1224,16 @@
             this.dgvLuong.TabIndex = 1;
             this.dgvLuong.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLuong_CellClick);
             // 
-            // label26
+            // button1
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(451, 19);
-            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(47, 13);
-            this.label26.TabIndex = 6;
-            this.label26.Text = "TEN NV";
-            // 
-            // txtLtennv
-            // 
-            this.txtLtennv.Location = new System.Drawing.Point(566, 14);
-            this.txtLtennv.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLtennv.Name = "txtLtennv";
-            this.txtLtennv.Size = new System.Drawing.Size(273, 20);
-            this.txtLtennv.TabIndex = 9;
+            this.button1.Image = global::DUAN_.Properties.Resources.LOGO;
+            this.button1.Location = new System.Drawing.Point(750, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(247, 61);
+            this.button1.TabIndex = 3;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // TRANGCHU
             // 

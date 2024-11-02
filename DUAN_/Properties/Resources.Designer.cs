@@ -73,9 +73,39 @@ namespace DUAN_.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap A7307209_jpg_2_ {
+            get {
+                object obj = ResourceManager.GetObject("A7307209.jpg(2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap A7307214_jpg {
+            get {
+                object obj = ResourceManager.GetObject("A7307214.jpg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Bright_yellow_circle_clipart_shapes_shape_colour_185377_wh1200 {
             get {
                 object obj = ResourceManager.GetObject("Bright-yellow-circle-clipart-shapes-shape-colour_185377_wh1200", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CHS2 {
+            get {
+                object obj = ResourceManager.GetObject("CHS2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
