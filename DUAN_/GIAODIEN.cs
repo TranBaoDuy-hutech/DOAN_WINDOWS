@@ -32,5 +32,9 @@ namespace DUAN_
             f.ShowDialog();
             this.Show();
         }
+        private void butEXIT_Click(object sender, EventArgs e)
+        {
+           this.Close();
+        }
     }
 }

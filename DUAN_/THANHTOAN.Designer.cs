@@ -61,10 +61,16 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.txtalltn = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtMOMO = new System.Windows.Forms.Button();
+            this.pictureBoxQRCode = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxQRCode)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -83,10 +89,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label1.Location = new System.Drawing.Point(27, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 21);
+            this.label1.Size = new System.Drawing.Size(138, 22);
             this.label1.TabIndex = 1;
             this.label1.Text = "THANH TOAN";
             // 
@@ -158,7 +165,8 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Red;
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(315, 236);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(118, 43);
@@ -188,7 +196,7 @@
             this.txttm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txttm.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txttm.ForeColor = System.Drawing.Color.Red;
-            this.txttm.Location = new System.Drawing.Point(85, 299);
+            this.txttm.Location = new System.Drawing.Point(315, 36);
             this.txttm.Name = "txttm";
             this.txttm.Size = new System.Drawing.Size(133, 35);
             this.txttm.TabIndex = 13;
@@ -213,7 +221,7 @@
             this.panel1.Controls.Add(this.label12);
             this.panel1.Location = new System.Drawing.Point(577, 47);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(462, 393);
+            this.panel1.Size = new System.Drawing.Size(462, 352);
             this.panel1.TabIndex = 14;
             // 
             // button3
@@ -249,7 +257,6 @@
             this.txttralai.Name = "txttralai";
             this.txttralai.Size = new System.Drawing.Size(148, 20);
             this.txttralai.TabIndex = 15;
-            this.txttralai.TextChanged += new System.EventHandler(this.txttralai_TextChanged);
             // 
             // txttiennhan
             // 
@@ -280,10 +287,11 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label12.Location = new System.Drawing.Point(8, 13);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(96, 21);
+            this.label12.Size = new System.Drawing.Size(105, 22);
             this.label12.TabIndex = 1;
             this.label12.Text = "TIEN MAT";
             // 
@@ -307,7 +315,7 @@
             // 
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(12, 425);
+            this.dataGridView2.Location = new System.Drawing.Point(11, 438);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(550, 212);
             this.dataGridView2.TabIndex = 17;
@@ -317,10 +325,11 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label10.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label10.Location = new System.Drawing.Point(27, 401);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(207, 21);
+            this.label10.Size = new System.Drawing.Size(218, 22);
             this.label10.TabIndex = 1;
             this.label10.Text = "GIAO DICH DANG LUU";
             this.label10.Click += new System.EventHandler(this.label10_Click);
@@ -336,8 +345,8 @@
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.button4.BackColor = System.Drawing.Color.Red;
+            this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Location = new System.Drawing.Point(103, 683);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(118, 43);
@@ -379,11 +388,52 @@
             this.txtalltn.TabIndex = 20;
             this.txtalltn.TextChanged += new System.EventHandler(this.txtalltn_TextChanged);
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel2.Controls.Add(this.pictureBoxQRCode);
+            this.panel2.Controls.Add(this.txtMOMO);
+            this.panel2.Controls.Add(this.label13);
+            this.panel2.Location = new System.Drawing.Point(577, 425);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(462, 333);
+            this.panel2.TabIndex = 21;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.label13.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label13.Location = new System.Drawing.Point(8, 19);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(81, 22);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "MO MO";
+            // 
+            // txtMOMO
+            // 
+            this.txtMOMO.Location = new System.Drawing.Point(121, 13);
+            this.txtMOMO.Name = "txtMOMO";
+            this.txtMOMO.Size = new System.Drawing.Size(81, 27);
+            this.txtMOMO.TabIndex = 2;
+            this.txtMOMO.Text = "TT_MOMO";
+            this.txtMOMO.UseVisualStyleBackColor = true;
+            this.txtMOMO.Click += new System.EventHandler(this.txtMOMO_Click);
+            // 
+            // pictureBoxQRCode
+            // 
+            this.pictureBoxQRCode.Location = new System.Drawing.Point(45, 52);
+            this.pictureBoxQRCode.Name = "pictureBoxQRCode";
+            this.pictureBoxQRCode.Size = new System.Drawing.Size(388, 264);
+            this.pictureBoxQRCode.TabIndex = 3;
+            this.pictureBoxQRCode.TabStop = false;
+            // 
             // THANHTOAN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1051, 770);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.txtalltn);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.dataGridView3);
@@ -414,6 +464,9 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxQRCode)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -454,5 +507,9 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtalltn;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button txtMOMO;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.PictureBox pictureBoxQRCode;
     }
 }

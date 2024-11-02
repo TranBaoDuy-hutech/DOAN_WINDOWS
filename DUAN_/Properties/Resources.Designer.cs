@@ -169,5 +169,15 @@ namespace DUAN_.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z5984139153077_221ddd35493f4070e4ef5bd94fb76f8b {
+            get {
+                object obj = ResourceManager.GetObject("z5984139153077_221ddd35493f4070e4ef5bd94fb76f8b", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

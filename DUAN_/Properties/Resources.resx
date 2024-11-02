@@ -124,8 +124,8 @@
   <data name="OIP (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OIP (1).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="dangnhap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dangnhap.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="OIP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OIP.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="OIP (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OIP (3).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,11 +136,14 @@
   <data name="OIP (4)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OIP (4).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OIP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\OIP.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="dangnhap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dangnhap.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="OIP (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OIP (2).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="z5984131918358_a36abeafa5b732c1f0bf97718cd31917" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\z5984131918358_a36abeafa5b732c1f0bf97718cd31917.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="325281372_565867301760449_5438567836731817247_n" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\325281372_565867301760449_5438567836731817247_n.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,7 +151,7 @@
   <data name="LOGO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LOGO.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="z5984131918358_a36abeafa5b732c1f0bf97718cd31917" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\z5984131918358_a36abeafa5b732c1f0bf97718cd31917.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="z5984139153077_221ddd35493f4070e4ef5bd94fb76f8b" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\z5984139153077_221ddd35493f4070e4ef5bd94fb76f8b.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

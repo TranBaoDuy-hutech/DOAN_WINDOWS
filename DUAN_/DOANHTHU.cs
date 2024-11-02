@@ -20,25 +20,40 @@ namespace DUAN_
     {
         public DOANHTHU()
         {
-            InitializeComponent();
+            InitializeComponent();          
         }
 
         private void DOANHTHU_Load(object sender, EventArgs e)
-        {
+        {          
+        //    dataNgay.Value = DateTime.Now;          
             LoadDataCT_HoaDon();
-            // Thiết lập DateTimePicker mặc định là ngày hiện tại
             dataNgay.Value = DateTime.Now;
-            // Tính toán doanh thu cho ngày hiện tại
-         //   CalculateDailyRevenue();
-         //   CalculateTotalRevenueByDate();
         }
+       
+        private void CalculateTotalRevenue()
+        {
+            decimal totalRevenue = 0;
+
+            foreach (DataGridViewRow row in dgvct_hd.Rows)
+            {
+                if (row.Cells["TONGTIEN"].Value != null)
+                {
+                    totalRevenue += Convert.ToDecimal(row.Cells["TONGTIEN"].Value);
+                }
+            }
+
+            txtdthu.Text = totalRevenue.ToString("N0"); // Hiển thị tổng doanh thu khi form load
+        }
+       
+
+
         private void LoadDataCT_HoaDon()
         {
             var service = new CT_HoaDonService();
             var data = service.GetAllCT_HoaDon();
 
             var dataTable = new DataTable();
-            dataTable.Columns.Add("MAHOADON", typeof(int));
+            dataTable.Columns.Add("MAHD", typeof(int));
             dataTable.Columns.Add("NGAYLAP", typeof(DateTime));
             dataTable.Columns.Add("MASACH", typeof(int));
             dataTable.Columns.Add("SOLUONG" , typeof(int));
@@ -51,6 +66,7 @@ namespace DUAN_
                 dataTable.Rows.Add( item.MAHD,item.NGAYLAP, item.MASACH,item.SOLUONG, item.TONGTIEN, item.TIENNHAN, item.TIENTHUA);
             }
             dgvct_hd.DataSource = dataTable;
+
         }
         private void CalculateTotalRevenueByDate()
         {
@@ -90,6 +106,14 @@ namespace DUAN_
 
             MessageBox.Show(message, "Doanh thu theo ngày", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        private void dataNgay_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime selectedDate = dataNgay.Value.Date; // Lấy ngày từ DateTimePicker
+            CalculateDailyRevenue(); // Tính doanh thu cho ngày đã chọn
+            FilterInvoicesByDate(selectedDate); // Lọc hóa đơn theo ngày đã chọn
+
+        }
+
         private void CalculateDailyRevenue()
         {
             decimal totalRevenue = 0;
@@ -118,21 +142,55 @@ namespace DUAN_
             MessageBox.Show($"Tổng doanh thu cho ngày {selectedDate:dd/MM/yyyy} là: {totalRevenue:N0}", "Doanh thu", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-
-        private void label2_Click(object sender, EventArgs e)
+        private void FilterInvoicesByDate(DateTime selectedDate)
         {
+            // Tạo DataTable để lưu trữ các hóa đơn đã lọc
+            DataTable filteredInvoices = new DataTable();
 
+            // Thêm cột vào DataTable theo cấu trúc của DataGridView
+            foreach (DataGridViewColumn column in dgvct_hd.Columns)
+            {
+                filteredInvoices.Columns.Add(column.Name, column.ValueType);
+            }
+
+            // Duyệt qua tất cả các dòng trong DataGridView
+            foreach (DataGridViewRow row in dgvct_hd.Rows)
+            {
+                if (row.Cells["NGAYLAP"].Value != null) // Kiểm tra nếu ô không rỗng
+                {
+                    DateTime dateRow = DateTime.Parse(row.Cells["NGAYLAP"].Value.ToString()).Date;
+
+                    // Kiểm tra xem ngày trong dòng có bằng ngày được chọn không
+                    if (dateRow == selectedDate)
+                    {
+                        // Tạo dòng mới trong DataTable và thêm vào
+                        DataRow newRow = filteredInvoices.NewRow();
+                        foreach (DataGridViewColumn column in dgvct_hd.Columns)
+                        {
+                            newRow[column.Name] = row.Cells[column.Name].Value;
+                        }
+                        filteredInvoices.Rows.Add(newRow);
+                    }
+                }
+            }
+
+            // Cập nhật DataGridView với dữ liệu đã lọc
+            dgvtimhd.DataSource = filteredInvoices;
+
+            // Kiểm tra xem có hóa đơn nào được lọc không
+            if (filteredInvoices.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có hóa đơn nào cho ngày đã chọn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
             CalculateTotalRevenueByDate();
         }
 
-        private void txtdthu_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
         private void ExportAllInvoices()
         {
             using (var context = new BansachModel()) // Đảm bảo BansachModel là context của bạn
@@ -268,10 +326,7 @@ namespace DUAN_
 
                     // Thiết lập DataSource cho DataGridView
                     dgvtimhd.DataSource = groupedHoaDon;
-
-
                 }
-
                 else
                 {
                     // Thông báo nếu không tìm thấy
@@ -292,7 +347,6 @@ namespace DUAN_
                 MessageBox.Show("Không có hóa đơn để in.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             PrintDocument printDocument = new PrintDocument();
             printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
 
@@ -326,6 +380,9 @@ namespace DUAN_
                 yPos += lineHeight + 10; // Tăng khoảng cách sau ngày lập
             }
 
+            string ngayIn = DateTime.Now.ToString("dd/MM/yyyy");
+            e.Graphics.DrawString("Ngày in hóa đơn: " + ngayIn, new Font("Arial", 12), Brushes.Black, leftMargin, yPos);
+            yPos += lineHeight + 10;
             // Đường kẻ ngang
             e.Graphics.DrawLine(Pens.Black, leftMargin, yPos, e.MarginBounds.Right, yPos);
             yPos += lineHeight;
@@ -362,7 +419,7 @@ namespace DUAN_
             yPos += 30;
 
             // Thêm mã QR với địa chỉ cửa hàng
-            string shopAddress = "TOA S501, VINHOME GRANK PRAK";
+            string shopAddress = "https://github.com/TranBaoDuy-hutech/DOAN_WINDOWS";
             using (var qrGenerator = new QRCodeGenerator())
             {
                 using (var qrCodeData = qrGenerator.CreateQrCode(shopAddress, QRCodeGenerator.ECCLevel.Q))
@@ -385,10 +442,37 @@ namespace DUAN_
             e.Graphics.DrawString("Cảm ơn quý khách đã mua hàng!", new Font("Arial", 12, FontStyle.Italic), Brushes.Black, leftMargin + 150, yPos);
         }
 
-        private void dataNgay_ValueChanged(object sender, EventArgs e)
+        
+        
+
+        private void dgvct_hd_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            CalculateDailyRevenue();
+            if (e.RowIndex >= 0) // Kiểm tra chỉ số dòng hợp lệ
+            {
+                DataGridViewRow selectedRow = dgvct_hd.Rows[e.RowIndex];
+
+                // Tạo DataTable chứa dữ liệu của dòng được chọn
+                DataTable selectedDataTable = new DataTable();
+
+                // Thêm cột vào DataTable theo cấu trúc của dgvct_hd
+                foreach (DataGridViewColumn column in dgvct_hd.Columns)
+                {
+                    selectedDataTable.Columns.Add(column.Name, column.ValueType);
+                }
+
+                // Tạo dòng mới và sao chép dữ liệu từ dòng đã chọn
+                DataRow newRow = selectedDataTable.NewRow();
+                foreach (DataGridViewColumn column in dgvct_hd.Columns)
+                {
+                    newRow[column.Name] = selectedRow.Cells[column.Name].Value;
+                }
+                selectedDataTable.Rows.Add(newRow);
+
+                // Gán DataTable vào DataSource của dgvtimhd
+                dgvtimhd.DataSource = selectedDataTable;
+            }
         }
     }
+
 
 }

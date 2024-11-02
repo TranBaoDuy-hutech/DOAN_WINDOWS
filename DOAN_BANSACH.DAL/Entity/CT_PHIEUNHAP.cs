@@ -82,11 +82,6 @@
             }
         }
 
-
-
-
-
-
         public void Delete(int maPhieuNhap, int maSach)
         {
             using (var context = new BansachModel())

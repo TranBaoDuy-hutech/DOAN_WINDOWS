@@ -87,10 +87,10 @@ namespace DUAN_
 
         private void txtpass_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) // Kiểm tra xem phím Enter có được nhấn không
-            {
-                btndangnhap.PerformClick(); // Gọi hàm nhấn nút "Đăng nhập"
-            }
+           if (e.KeyCode == Keys.Enter) // Kiểm tra xem phím Enter có được nhấn không
+           {
+               btndangnhap.PerformClick(); // Gọi hàm nhấn nút "Đăng nhập"
+           }
         }
     }
 }

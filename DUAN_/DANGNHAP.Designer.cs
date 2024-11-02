@@ -52,7 +52,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.btnthoat);
             this.panel1.Controls.Add(this.btndangnhap);
@@ -60,10 +60,10 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtid);
             this.panel1.Controls.Add(this.txtpass);
-            this.panel1.Location = new System.Drawing.Point(164, 56);
+            this.panel1.Location = new System.Drawing.Point(422, 318);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(322, 211);
+            this.panel1.Size = new System.Drawing.Size(351, 228);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -80,10 +80,11 @@
             // 
             // btnthoat
             // 
+            this.btnthoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnthoat.Location = new System.Drawing.Point(200, 162);
             this.btnthoat.Margin = new System.Windows.Forms.Padding(2);
             this.btnthoat.Name = "btnthoat";
-            this.btnthoat.Size = new System.Drawing.Size(70, 19);
+            this.btnthoat.Size = new System.Drawing.Size(70, 32);
             this.btnthoat.TabIndex = 4;
             this.btnthoat.Text = "THOAT";
             this.btnthoat.UseVisualStyleBackColor = true;
@@ -91,10 +92,11 @@
             // 
             // btndangnhap
             // 
+            this.btndangnhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btndangnhap.Location = new System.Drawing.Point(61, 162);
             this.btndangnhap.Margin = new System.Windows.Forms.Padding(2);
             this.btndangnhap.Name = "btndangnhap";
-            this.btndangnhap.Size = new System.Drawing.Size(127, 19);
+            this.btndangnhap.Size = new System.Drawing.Size(127, 32);
             this.btndangnhap.TabIndex = 3;
             this.btndangnhap.Text = "DANG NHAP";
             this.btndangnhap.UseVisualStyleBackColor = true;
@@ -132,11 +134,11 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::DUAN_.Properties.Resources.Bright_yellow_circle_clipart_shapes_shape_colour_185377_wh1200;
+            this.pictureBox1.Image = global::DUAN_.Properties.Resources.z5984139153077_221ddd35493f4070e4ef5bd94fb76f8b;
             this.pictureBox1.Location = new System.Drawing.Point(-163, -89);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(670, 440);
+            this.pictureBox1.Size = new System.Drawing.Size(1106, 748);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -146,7 +148,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(495, 289);
+            this.ClientSize = new System.Drawing.Size(784, 557);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.Margin = new System.Windows.Forms.Padding(2);

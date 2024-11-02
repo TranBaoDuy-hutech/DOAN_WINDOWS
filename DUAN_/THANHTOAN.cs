@@ -1,5 +1,6 @@
 ﻿using DOAN_BANHSACH.BUS;
 using DOAN_BANSACH.DAL.Entity;
+using QRCoder;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static DOAN_BANHSACH.BUS.SachService;
+using static QRCoder.PayloadGenerator;
 
 namespace DUAN_
 {
@@ -59,6 +61,8 @@ namespace DUAN_
         {
             LoadDataSACH();
             LoadDataCT_HoaDon();
+            TinhTongTien();
+            
         }
         private void LoadDataCT_HoaDon()
         {
@@ -252,9 +256,7 @@ namespace DUAN_
         }
         private void txttiennhan_TextChanged(object sender, EventArgs e)
         {
-            TinhTienThua();
-
-          
+            TinhTienThua();   
         }
 
         private void txttm_Click(object sender, EventArgs e)
@@ -269,11 +271,6 @@ namespace DUAN_
         private void button2_Click(object sender, EventArgs e)
         {
             PrintInvoice();
-        }
-
-        private void txttralai_TextChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -295,8 +292,8 @@ namespace DUAN_
             dataGridView2.Columns[3].Name = "Số lượng";
             dataGridView2.Columns[4].Name = "Tổng tiền";
             dataGridView2.Columns[5].Name = "Ngày lập";
-            dataGridView2.Columns[6].Name = "Tien nhan";
-            dataGridView2.Columns[7].Name = "Tien thua";
+         //   dataGridView2.Columns[6].Name = "Tien nhan";
+         //   dataGridView2.Columns[7].Name = "Tien thua";
 
             // Lấy dữ liệu từ DateTimePicker và định dạng ngày tháng (nếu cần)
             string ngayLap = txtNgayLap.Value.ToString("dd/MM/yyyy");
@@ -333,8 +330,8 @@ namespace DUAN_
                 txtid.Text = selectedRow.Cells["Mã sách"].Value.ToString();
                 txtsl.Text = selectedRow.Cells["Số lượng"].Value.ToString();
                 txttongtien.Text = selectedRow.Cells["Tổng tiền"].Value.ToString();
-                txttiennhan.Text = selectedRow.Cells["Tien nhan"].Value.ToString(); // Để trống để người dùng nhập
-                txttralai.Text = selectedRow.Cells["Tien thua"].Value.ToString();   // Để trống để cập nhật sau
+             //   txttiennhan.Text = selectedRow.Cells["Tien nhan"].Value.ToString(); // Để trống để người dùng nhập
+             //   txttralai.Text = selectedRow.Cells["Tien thua"].Value.ToString();   // Để trống để cập nhật sau
             }
             
         }
@@ -449,6 +446,32 @@ namespace DUAN_
         private void txtalltn_TextChanged(object sender, EventArgs e)
         {
             TinhTienThuaall();
+        }
+       
+
+        private void txtMOMO_Click(object sender, EventArgs e)
+        {
+            // Lấy số tiền và mã hóa đơn từ TextBox
+            string amount = txttongtien.Text; // Giả sử txtSoTien chứa số tiền
+            string invoiceId = txtMAHD.Text; // Giả sử txtMaHD chứa mã hóa đơn
+
+            // Thông tin cho QR Code (thay thế số điện thoại với tài khoản nhận tiền)
+            string phoneNumber = "0329810650"; // Thay thế bằng số điện thoại thực tế của tài khoản MoMo
+            string qrCodeContent = $"momo://payment?amount={amount}&invoiceId={invoiceId}&phone={phoneNumber}";
+
+            // Tạo mã QR
+            using (var qrGenerator = new QRCodeGenerator())
+            {
+                using (var qrCodeData = qrGenerator.CreateQrCode(qrCodeContent, QRCodeGenerator.ECCLevel.Q))
+                {
+                    using (var qrCode = new QRCode(qrCodeData))
+                    {
+                        Bitmap qrCodeImage = qrCode.GetGraphic(5);
+                        // Hiển thị mã QR trong PictureBox (giả sử bạn đã thêm PictureBox vào form)
+                        pictureBoxQRCode.Image = qrCodeImage;
+                    }
+                }
+            }
         }
     }
 
